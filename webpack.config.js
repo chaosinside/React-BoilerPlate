@@ -1,39 +1,34 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require("webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const Dotenv = require("dotenv-webpack");
+const htmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: [
-    'react-hot-loader/patch',
-    './src/index.js'
-  ],
-  module: {
-    rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.(ts|tsx)$/, loader: "awesome-typescript-loader", exclude: /node_modules/ },
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
-      { test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
-      { test: /\.(gif|png|jpe?g|svg)$/i, use: ['file-loader'] },
-      { test: /\.css$/, use: ['style-loader', 'css-loader' ] },
-      { test: /\.scss$/, use: ['style-loader', 'css-loader', 'sass-loader'] }
-    ]
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx']
-  },
-  output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin({ allChunks: true, filename: 'style.css' })
-  ],
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
+	entry: ["./src/index.js"],
+	module: {
+		rules: [
+			// All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+			{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+			{ test: /\.(js|jsx)$/, exclude: /node_modules/, use: [{ loader: "babel-loader" }] },
+			{ test: /\.(scss|css)$/, use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] },
+			{ test: /\.(png|jpg|gif|svg)$/, use: [{ loader: "file-loader", options: { name: "images/[name].[ext]" } }] }
+		]
+	},
+	resolve: {
+		extensions: [".js", ".jsx"]
+	},
+	output: {
+		filename: "app.js"
+	},
+	plugins: [
+		new Dotenv(),
+		new webpack.HotModuleReplacementPlugin(),
+		new MiniCssExtractPlugin({ filename: "app.css", chunkFilename: "[name].[ext]", allChunks: false }),
+    new htmlWebpackPlugin({ template: "./src/index.html", filename: "index.html", hash: true })
+	],
+	devServer: {
+		hot: true
+	},
   // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map"
+  devtool: "eval-source-map"
 };
