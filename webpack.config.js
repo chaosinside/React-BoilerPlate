@@ -11,7 +11,7 @@ module.exports = {
 			{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
 			{ test: /\.(js|jsx)$/, exclude: /node_modules/, use: [{ loader: "babel-loader" }] },
 			{ test: /\.(scss|css)$/, use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"] },
-			{ test: /\.(png|jpg|gif|svg)$/, use: [{ loader: "file-loader", options: { name: "images/[name].[ext]" } }] }
+			{ test: /\.(png|jpe?g|gif|svg)$/, use: [{ loader: "file-loader", options: { name: "images/[name].[ext]" } }] }
 		]
 	},
 	resolve: {
