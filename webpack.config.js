@@ -34,6 +34,6 @@ module.exports = {
 		hot: true,
 		historyApiFallback: true
 	},
-  // Enable sourcemaps for debugging webpack's output.
-  devtool: "eval-source-map"
+	// Enable sourcemaps for debugging webpack's output.
+	devtool: "eval-source-map"
 };

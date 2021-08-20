@@ -5,13 +5,13 @@ import "../css/App.scss";
 import Home from "./Home";
 
 export default class App extends React.Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-          <Route exact path="/" component={Home} />
-        </div>
-      </BrowserRouter>
-    );
-  }
+	render() {
+		return (
+			<BrowserRouter>
+				<div>
+					<Route exact path="/" component={Home} />
+				</div>
+			</BrowserRouter>
+		);
+	}
 }
