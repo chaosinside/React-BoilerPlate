@@ -3,8 +3,8 @@
 For use with Nodejs v14.17.4
 
 Features include:
-* Webpack 4
-* ES9 (ECMAScript 2018)
+* React 18.2
+* Webpack 5.76.0
 * ESLint
 * Hot-Reloading
 * SASS Support
