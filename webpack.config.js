@@ -11,8 +11,8 @@ module.exports = {
 		new Dotenv(),
 		new webpack.HotModuleReplacementPlugin(),
 		new MiniCssExtractPlugin({ filename: "app.css", chunkFilename: "[name].[ext]" }),
-		new htmlWebpackPlugin({ template: "./src/index.html", filename: "index.html", hash: true }),
-		new htmlWebpackPlugin({ template: "./src/favicon.png", filename: "favicon.png", hash: true })
+		new htmlWebpackPlugin({ template: "src/index.html", filename: "index.html", hash: true }),
+		new htmlWebpackPlugin({ template: "src/favicon.png", filename: "favicon.png", hash: true })
 	],
 	module: {
 		rules: [
@@ -20,19 +20,21 @@ module.exports = {
 			{ enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
 			{ test: /\.(js|jsx)$/, exclude: /node_modules/, use: [{ loader: "babel-loader" }] },
 			{ test: /\.(scss|css)$/, use: [{ loader: MiniCssExtractPlugin.loader }, "css-loader", "sass-loader"] },
-			{ test: /\.(png|jpe?g|gif|svg)$/, use: [{ loader: "file-loader", options: { name: "images/[name].[ext]" } }] }
+			{ test: /\.(png|jpe?g|gif|svg)$/, use: [{ loader: "file-loader", options: { outputPath: "images", name: "[name].[ext]" } }] }
 		]
 	},
 	resolve: {
 		extensions: [".js", ".jsx"]
 	},
 	output: {
-		filename: "app.js"
+		filename: "app.js",
+		path: path.resolve(__dirname, "dist"),
+		publicPath: "/"
 	},
 	devServer: {
 		static: path.resolve(__dirname, "dist"),
 		hot: true,
-		historyApiFallback: true
+		historyApiFallback: { index: "/" }
 	},
   // Enable sourcemaps for debugging webpack's output.
   devtool: "eval-source-map"
