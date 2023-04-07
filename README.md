@@ -1,6 +1,6 @@
 # React BoilerPlate #
 
-For use with Nodejs v14.17.4
+For use with Nodejs v18.15
 
 Features include:
 * React 18.2
