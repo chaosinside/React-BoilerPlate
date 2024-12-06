@@ -1,10 +1,10 @@
 # React BoilerPlate #
 
-For use with Nodejs v18.15
+For use with Nodejs v23.3.0
 
 Features include:
-* React 18.2
-* Webpack 5.76.0
+* React 19
+* Webpack
 * ESLint
 * Hot-Reloading
 * SASS Support
